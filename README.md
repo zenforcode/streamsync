@@ -6,23 +6,27 @@ StreamSync is a high-performance Rust-based application for transferring and pro
 - DAG-driven Workflow: Movement and transformations are controlled via a Directed Acyclic Graph (DAG) of Processors.
 - High-performance Transfers: Optimized for efficient file movement across different storage locations.
 - Modular and Extensible: Easily add new processors to modify and route FlowFiles dynamically.
-Rust-Powered: Leverages Rust's safety and concurrency capabilities for a robust system.
-Installation
+- Rust-Powered: Leverages Rust's safety and concurrency capabilities for a robust system.
+# Installation
 Ensure you have Rust installed on your system. You can install Rust via rustup:
-
+```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 Then, clone the repository and build the project:
-
+```
 git clone https://github.com/yourusername/StreamSync.git
 cd StreamSync
 cargo build --release
-Usage
+```
+## Usage
 Run the application using:
-
+```
 cargo run --release --config config.toml
-Configuration
-StreamSync requires a configuration file (config.toml) that specifies storage locations and processing rules. Example:
+```
 
+## Configuration
+StreamSync requires a configuration file (config.toml) that specifies storage locations and processing rules. Example:
+```
 [input]
 path = "/path/to/source"
 
@@ -31,13 +35,14 @@ path = "/path/to/destination"
 
 [processors]
 flow = ["Encrypt", "Compress", "Upload"]
-FlowFile Structure
+```
+## FlowFile Structure
 A FlowFile consists of:
 
 Data: The actual content being transferred.
 Metadata: Key-value pairs providing information about the file (e.g., name, size, timestamps).
 Example JSON representation of a FlowFile:
-
+```
 {
     "data": "base64-encoded-content",
     "metadata": {
@@ -46,7 +51,8 @@ Example JSON representation of a FlowFile:
         "created_at": "2025-02-06T12:00:00Z"
     }
 }
-DAG of Processors
+```
+## DAG of Processors
 Each processor in the DAG takes a set of FlowFiles, performs operations, and passes them forward. Example processors:
 
 EncryptProcessor: Encrypts file content.
